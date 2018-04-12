@@ -16,10 +16,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText email,password;
-    private Button signup,login;
+    private EditText email, password;
+    private Button signup, login;
     private FirebaseAuth mAuth;
 
     @Override
@@ -27,37 +29,41 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email=findViewById(R.id.email);
-        password=findViewById(R.id.password);
-        signup=findViewById(R.id.signup);
-        login=findViewById(R.id.login);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        signup = findViewById(R.id.signup);
+        login = findViewById(R.id.login);
 
         mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser() != null){
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "failure", Toast.LENGTH_SHORT).show();
+
+                if (!Objects.equals(email.getText().toString(), "") && !Objects.equals(password.getText().toString(), "")) {
+
+                    mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(LoginActivity.this, "failure", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
 
@@ -65,24 +71,28 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w("TAG", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "failure", Toast.LENGTH_SHORT).show();
-                                }
 
-                                // ...
-                            }
-                        });
+                if (!Objects.equals(email.getText().toString(), "") && !Objects.equals(password.getText().toString(), "")) {
+
+                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w("TAG", "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(LoginActivity.this, "failure", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    // ...
+                                }
+                            });
+                }
             }
         });
     }
