@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeStream(inStream),
-                512, 512);
+                720, 1280);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         ThumbImage.compress(Bitmap.CompressFormat.PNG, 100, stream);

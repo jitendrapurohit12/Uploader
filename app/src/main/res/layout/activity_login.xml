@@ -6,46 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.littleapps.uploader.LoginActivity">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Email"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@id/email"
-        android:hint="Password"
-        android:textSize="18sp"/>
-
-    <Button
-        android:id="@+id/signup"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/gsb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Signup"
-        android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_marginEnd="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Login"
-        android:layout_alignParentEnd="true"
-        android:textSize="20sp"/>
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>
