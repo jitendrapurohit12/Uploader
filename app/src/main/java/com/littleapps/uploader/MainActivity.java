@@ -260,13 +260,13 @@ public class MainActivity extends AppCompatActivity {
         wallIdMap.put("wall_id", no);
 
         HashMap<String, Object> uploadMap = new HashMap<>();
-        uploadMap.put("name", name.getText().toString());
-        uploadMap.put("url", downloadUri.toString());
-        uploadMap.put("thumbnail", thumbnailFromUri.toString());
-        uploadMap.put("favourite", 0);
-        uploadMap.put("time", currentTime);
-        uploadMap.put("wall_id", no);
-        uploadMap.put("category", categoryList.get(spinner.getSelectedItemPosition()));
+        uploadMap.put("N", name.getText().toString());
+        uploadMap.put("U", downloadUri.toString());
+        uploadMap.put("TH", thumbnailFromUri.toString());
+        uploadMap.put("F", 0);
+        uploadMap.put("T", currentTime);
+        uploadMap.put("I", no);
+        uploadMap.put("C", categoryList.get(spinner.getSelectedItemPosition()));
 
         uploadRef.setValue(uploadMap);
         uploadRef2.setValue(uploadMap);
